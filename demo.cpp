@@ -1,55 +1,75 @@
 #include <cstdio>
-#include <cstdlib>
 #include <cstring>
+#include <cstdlib>
 #include <algorithm>
 
 using namespace std;
-const int maxn=1000004;
+const int maxn=100000;
 
-struct node
+int n=0;
+int data[maxn];
+void read()
 {
-	long long time;
-	int flag;
-}T[2*maxn];
-int sum=0;
-int ans=0;
+	char s[10];
+	while(1)
+	{
+		scanf("%s",s);
+		if(s[0]=='#')
+			break;
+		int num=0;
+		int len=strlen(s);
+		int start=s[0]=='-'?1:0;
+		for(int i=start;i<len;i++)
+			num=num*10+s[i]-'0';
+		num=start==1?-num:num;
+		data[n++]=num;
+	}
+}
 
-int cmp(struct node n1,struct node n2)
+void insert_sort(int start,int end)
 {
-	if(n1.time!=n2.time)
+	for(int i=start+1;i<=end;i++)
 	{
-		return n1.time<n2.time;
+		int key=data[i];
+		int j=i-1;
+		while(j>=start && data[j]>key)
+		{
+			data[j+1]=data[j];
+			j--;
+		}
+		data[j+1]=key;
 	}
-	else
+}
+void quick_sort(int start,int end,int flag)
+{
+	/* if(start>end)
+	 *     return;    */
+	if(end-start<4)
 	{
-		return n1.flag > n2.flag;
+		insert_sort(start,end+1);
+		return;
 	}
+	int i=start,j=end;
+	printf("%d\n",flag);
+	while(i<j)
+	{
+		if(data[i]>flag && data[j]<flag)
+			swap(data[i],data[j]);
+		else if(data[i]<=flag)
+			i++;
+		else if(data[j]>=flag)
+			j--;
+	}
+	swap(data[i],data[end+1]);
+	quick_sort(start,i-2,data[i-1]);
+	quick_sort(i+1,end,data[end+1]);
 }
 int main(void)
 {
-	/* freopen("in.txt","r",stdin);  */
-	int n;
-	scanf("%d",&n);
+	/* freopen("in.txt","r",stdin); */
+	read();
+	quick_sort(0,n-2,data[n-1]);
 	for(int i=0;i<n;i++)
-	{
-		long long t1,t2;
-		scanf("%lld%lld",&t1,&t2);
-		T[sum].time=t1;
-		T[sum++].flag=0;
-		T[sum].time=t2;
-		T[sum++].flag=1;
-	}
-	sort(T,T+sum,cmp);
-	int tmp=0;
-	for(int i=0;i<sum;i++)
-	{
-		if(T[i].flag==0)
-			tmp++;
-		else if(T[i].flag==1)
-			tmp--;
-		if(tmp>ans)
-			ans=tmp;
-	}
-	printf("%d\n",ans);
+		printf("%d ",data[i]);
 	return 0;
 }
