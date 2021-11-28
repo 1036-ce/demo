@@ -1,57 +1,20 @@
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cctype>
+#include <GL/glut.h>
 
-using namespace std;
-int maxn=10000;
-int data[5][5];
-char op[maxn];
-
-int main(void)
+void myDisplay(void)
 {
-	for(int i=0;i<4;i++)
-		for(int j=0;j<4;j++)
-			scanf("%d",data[i][j]);
-	char ch;
-	int pos=0;
-	while((ch=getchar())!+'\n')
-	{
-		if(isdigit(ch))
-			op[pos++]=ch-'a';
-		else if(isalnum(ch))
-			op[pos++]=ch;
-	}
-	for(int i=0;i<pos;i+=3)
-	{
-		char dir=op[i];
-		int p=op[i+1]-1;
-		int num=op[i+2];
+	glClear(GL_COLOR_BUFFER_BIT);
+	glRectf(-0.5f,-0.5f,0.5f,0.5f);
+	glFlush();
+}
 
-		switch(dir)
-		{
-			case 'w':
-				{
-					break;
-				}
-			case 'a':
-				{
-					break;
-				}
-			case 's':
-				{
-					break;
-				}
-			case 'd':
-				{
-					break;
-				}
-		}
-		data[p/4][p%4]=num;
-	}
-	for(int i=0;i<4;i++)
-		for(int j=0;j<4;j++)
-			printf("%d ",data[i][j]);
-	printf("\n");
+int main(int argc,char *argv[])
+{
+	glutInit(&argc,argv);
+	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(400,400);
+	glutCreateWindow("windows name");
+	glutDisplayFunc(&myDisplay);
+	glutMainLoop();
 	return 0;
 }
