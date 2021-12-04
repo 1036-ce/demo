@@ -1,20 +1,45 @@
-#include <GL/glut.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-void myDisplay(void)
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-	glRectf(-0.5f,-0.5f,0.5f,0.5f);
-	glFlush();
-}
+using namespace std;
 
-int main(int argc,char *argv[])
+int main()
 {
-	glutInit(&argc,argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-	glutInitWindowPosition(100,100);
-	glutInitWindowSize(400,400);
-	glutCreateWindow("windows name");
-	glutDisplayFunc(&myDisplay);
-	glutMainLoop();
+	int n=12;
+	for(int i=0;i<n;i++)
+		for(int j=0;j<n;j++)
+			printf("as");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
+	for(int i=0;i<n;i++)
+		printf("A");
 	return 0;
 }
+
