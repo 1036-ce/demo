@@ -1,3 +1,6 @@
-
-tags
-.gdb_history
+*
+!*.c
+!*.cpp
+!*.h
+!Makefile
+!README.md
